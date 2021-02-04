@@ -1,0 +1,205 @@
+@import url('https://fonts.googleapis.com/css2?family=Varela&display=swap');
+
+:root {
+  --primaryColor: #fff;
+  --navColor1: #21292c;
+  --navColor2: #A9A30A;
+  --navColor3: #5B9A09;
+  --navColor4: #A61451;
+  --navColor5: #531783;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: #000;
+  font-family: 'Varela', sans-serif;
+}
+
+/* --- Navigation Menu ------------------------------ */
+
+/* Overlay*/
+.overlay {
+  position: fixed; /*we wnt it to be fix-size-wind regardless of scroll*/
+  z-index: 9; /*be default everything is 0 index, we want to have over top of everything*/
+  top: 0;
+  left: 0;
+  width: 100vw; /*width as entire view screen*/
+  height: 100vh; /*height as entire view screen*/
+  background-color: rgba(0, 0, 0, 0.7); /*black opacity 0.7*/
+}
+
+/* Nav Menu Items*/
+nav,
+nav ul {
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+}
+
+nav ul { /*Target unorderd list using flexbox*/
+  display: flex;
+  flex-direction: column;
+  justify-content: stretch;
+  list-style: none; /*no bullit points which normally when using ul*/
+}
+
+nav ul li { /*target height of all 5 nav list*/
+  height: 20%; /*only want 20% of the parent window*/
+  overflow: hidden; /*dont want a horizontal scroll*/
+}
+
+nav li a { /*styling the anchors*/
+  position: relative;
+  top: 45%; /*not 50% because font is taking up some space too*/
+  color: #fff; /*font color*/
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-decoration: none;
+  display: block;
+  text-align: center;
+}
+
+/*Suo class hover*/
+nav li a:hover {
+  transform: scale(1.3); /*Mean 30% bigger when hover over*/
+}
+
+/*Sudo class anchors animation*/
+nav li a::before { /*this allow us to use content before load*/
+  content: ""; /*no content, only blank*/
+  width: 25vw;
+  height: 3px;
+  background-color: #fff;
+  position: absolute;
+  top: 47.5%; /*Here we counting for the line height it self*/
+  left: 0; /*left because we start from the left side*/
+  opacity: 0; /*by default it i s 0 */
+} 
+
+/*Hover sudo class to animate the lines*/
+nav li a:hover::before {
+  opacity: 1;
+}
+
+/*Sudo class*/
+nav li:nth-of-type(1) { /*we target all 5 nav types*/
+  background-color: var(--navColor1);
+}
+
+nav li:nth-of-type(2) { /*we target all 5 nav types*/
+  background-color: var(--navColor2);
+}
+
+nav li:nth-of-type(3) { /*we target all 5 nav types*/
+  background-color: var(--navColor3);
+}
+
+nav li:nth-of-type(4) { /*we target all 5 nav types*/
+  background-color: var(--navColor4);
+}
+
+nav li:nth-of-type(5) { /*we target all 5 nav types*/
+  background-color: var(--navColor5);
+}
+
+
+/* --- Menu Bars ------------------------------------ */
+
+.menu-bars {
+  position: fixed;
+  top: 1rem;
+  right: 2rem;
+  z-index: 10;
+  display: inline;
+  cursor: pointer;
+}
+
+.bar1,
+.bar2,
+.bar3 {
+  width: 35px;
+  height: 2px;
+  background-color: #fff;
+  margin: 8px 0;
+  transition: 0.4s;
+}
+
+/* Rotate first bar */
+.change .bar1 {
+  transform: rotate(-45deg) translate(-7px, 8px);
+}
+
+/* Fade out the second bar */
+.change .bar2 {
+  opacity: 0;
+}
+
+/* Rotate last bar */
+.change .bar3 {
+  transform: rotate(45deg) translate(-6px, -8px);
+}
+
+/* --- Sections ------------------------------------ */
+
+section {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  color: var(--primaryColor);
+}
+
+section#home {
+  background-image: url("https://images.unsplash.com/photo-1607106924440-59f9ede7050c?ixid=MXwxMjA3fDB8MHxzZWFyY2h8NTR8fGJsYWNrJTIwcGhvdG9zfGVufDB8fDB8&ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=60");
+  background-size: cover;
+  background-position: center center;
+}
+
+section#home a {
+  position: absolute;
+  z-index: 2;
+  top: 1.5rem;
+  left: 1.5rem;
+  text-decoration: none;
+  font-size: 0.8rem;
+  padding-bottom: 5px;
+  color: var(--primaryColor);
+  border-bottom: 1px solid var(--primaryColor);
+}
+
+section#about {
+  background-color: var(--navColor2);
+}
+
+section#skills {
+  background-color: var(--navColor3);
+}
+
+section#projects {
+  background-color: var(--navColor4);
+}
+
+section#contact {
+  background-color: var(--navColor5);
+}
+
+/* Media Query: Large Smartphone (Vertical) */
+@media (max-width: 600px) {
+  section#home a {
+    top: 1rem;
+    left: 1rem;
+  }
+
+  .menu-bars {
+    top: 0.5rem;
+    right: 1rem;
+  }
+}
