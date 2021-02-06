@@ -17,30 +17,31 @@ body {
   margin: 0;
   background: #000;
   font-family: 'Varela', sans-serif;
+  text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.85);
 }
 
 /* --- Navigation Menu ------------------------------ */
 
 /* Overlay*/
 .overlay {
-  position: fixed; /*we wnt it to be fix-size-wind regardless of scroll*/
-  z-index: 9; /*be default everything is 0 index, we want to have over top of everything*/
-  top: 0; /*start pos top*/
-  left: 0; /*start pos left*/
-  width: 100vw; /*width as entire view screen*/
-  height: 100vh; /*height as entire view screen*/
-  background-color: rgba(0, 0, 0, 0.5); /*black opacity 0.7*/
-  transform: translateX(-100vw); /*nav menu bar is child of overlay why we do it here*/
+  position: fixed;
+  z-index: 9;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  transform: translateX(-100vw);
 }
 
-overlay-slide-right { /*sliding into screen*/
+.overlay-slide-right {
   transition: all 0.4s ease-in-out;
-  transform: translateX(0); /*the (0) means right back into view*/
+  transform: translateX(0);
 }
 
-overlay-slide-right { /*sliding of the screen*/
+.overlay-slide-left {
   transition: all 0.8s ease-in-out;
-  transform: translateX(-100vw); /*the (0) means right back into view*/
+  transform: translateX(-100vw);
 }
 
 /* Nav Menu Items*/
@@ -49,16 +50,13 @@ nav ul {
   height: 100vh;
   margin: 0;
   padding: 0;
-}
-
-nav ul { /*Target unorderd list using flexbox*/
   display: flex;
   flex-direction: column;
   justify-content: stretch;
   list-style: none; /*no bullit points which normally when using ul*/
 }
 
-nav ul li { /*target height of all 5 nav list*/
+nav li { /*target height of all 5 nav list*/
   height: 20%; /*only want 20% of the parent window*/
   overflow: hidden; /*dont want a horizontal scroll*/
 }
@@ -75,9 +73,6 @@ nav li a { /*styling the anchors*/
 }
 
 /*Suo class hover*/
-nav li a:hover {
-  transform: scale(1.2); /*Mean 30% bigger when hover over*/
-}
 
 /*Sudo class anchors animation*/
 nav li a::before { /*this allow us to use content before load*/
@@ -90,6 +85,10 @@ nav li a::before { /*this allow us to use content before load*/
   left: 0; /*left because we start from the left side*/
   opacity: 0; /*by default it i s 0 */
 } 
+
+nav li a:hover {
+  transform: scale(1.2); /*Mean 30% bigger when hover over*/
+}
 
 /*Hover sudo class to animate the lines*/
 nav li a:hover::before {
@@ -117,6 +116,67 @@ nav li:nth-of-type(5) { /*we target all 5 nav types*/
   background-color: var(--navColor5);
 }
 
+/* Slide in animation with delay for each nav item*/
+
+.slide-in-1 {
+  animation: slide-in 0.4s linear 0.2s both;
+}
+
+.slide-in-2 {
+  animation: slide-in 0.4s linear 0.4s both;
+}
+
+.slide-in-3 {
+  animation: slide-in 0.4s linear 0.6s both;
+}
+
+.slide-in-4 {
+  animation: slide-in 0.4s linear 0.8s both;
+}
+
+.slide-in-5 {
+  animation: slide-in 0.4s linear 1s both;
+}
+
+@keyframes slide-in {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+/* Slide out animation with delay for each nav item*/
+
+.slide-out-1 {
+  animation: slide-out 0.4s linear 0.5s both;
+}
+
+.slide-out-2 {
+  animation: slide-out 0.4s linear 0.4s both;
+}
+
+.slide-out-3 {
+  animation: slide-out 0.4s linear 0.3s both;
+}
+
+.slide-out-4 {
+  animation: slide-out 0.4s linear 0.2s both;
+}
+
+.slide-out-5 {
+  animation: slide-out 0.4s linear 0.1s both;
+}
+
+@keyframes slide-out {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100vw);
+  }
+}
 
 /* --- Menu Bars ------------------------------------ */
 
